@@ -37,6 +37,7 @@ header {
   flex-wrap: wrap;
   width: 80%;
   margin: 0 auto;
+  justify-content: center;
 }
 .movie {
   background-color: #373b69;
@@ -89,4 +90,21 @@ header {
   outline: none;
   background: white;
   color: black;
+}
+
+.tag {
+  background-color: #22254b;
+  padding: 0.5 rem;
+  /* border-radius: 5px; */
+  /* font-family: bold; */
+  font-weight: bold;
+}
+.tag.green {
+  color: green;
+}
+.tag.orange {
+  color: orange;
+}
+.tag.red {
+  color: red;
 }

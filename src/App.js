@@ -11,31 +11,32 @@ function App() {
   const [movies , setMovies] = useState([]);
 
   const [searchTerm, setSearchTerm] = useState('');
-  useEffect(() => {
-      fetch(FEATURED_API)
-      .then((res) => res.json())
-      .then((data) => {
-          console.log(data);
-          setMovies(data.results);
-      });
 
+  useEffect(() => {
+    getMovies(FEATURED_API);
+     
   }, []);
+
+  const getMovies = (API) => {
+    fetch(API)
+    .then((res) => res.json())
+    .then((data) => {
+        //console.log(data);
+        setMovies(data.results);
+    });
+
+    
+  }
 
   const handleOnSubmit =(e) => {
     e.preventDefault(); 
+    if(searchTerm)
+    {
+      getMovies(SEARCH_API + searchTerm);
 
-    fetch(SEARCH_API + searchTerm)
-      
-      .then((res) =>
-      {
-        console.log(res)
-      return res.json()
-    }
-      )
-      .then((data) => {
-          console.log(data);
-          setMovies(data.results);
-       });
+    
+       setSearchTerm('');
+      }
 
   };
 
@@ -48,7 +49,7 @@ return (
   <>
   <header>
     <form onSubmit={handleOnSubmit}>
-    <input className='search' type="search" placeholder='Search...' value={searchTerm} onChange={handleOnChange } />
+    <input className='search' type="text" placeholder='Search...' value={searchTerm} onChange={handleOnChange } />
 
     </form>
   </header>
